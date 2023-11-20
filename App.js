@@ -1,48 +1,27 @@
 import React, { useState } from 'react';
-import { Button, StatusBar, StyleSheet, Text, View } from 'react-native';
+import ToDoList from './ToDoList';
+import ToDoForm from './ToDoForm'; 
 
-function ToDoList({ tasks }) {
-  return (
-    <View>
-      <Text>Task List:</Text>
-      <ul>
-        {tasks.map((task, index) => (
-          <li key={index}>{task}</li>
-        ))}
-      </ul>
-    </View>
-  );
-}
-
-export default function App() {
+function App() {
+  
   const [tasks, setTasks] = useState([
     'Do laundry',
     'Go to gym',
     'Walk dog'
   ]);
 
-  return (
-    <View style={styles.container}>
-      <Text>Welcome to React Native!</Text>
-      <Button
-        title="Press me"
-        onPress={() => {
-          // Handle button press
-        }}
-      />
-      <StatusBar style="auto" />
+  
+  const addTask = (taskText) => {
+    setTasks([...tasks, taskText]);
+  };
 
-      {/* Display ToDoList and pass tasks as a prop */}
+  return (
+    <div>
+      {}
+      <ToDoForm addTask={addTask} />
       <ToDoList tasks={tasks} />
-    </View>
+    </div>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#f0f',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export default App;
